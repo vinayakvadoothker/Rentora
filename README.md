@@ -1,5 +1,5 @@
-# renter.com
-A Repo for A Website and App - Renter.com
+# rentora.ai
+A Repo for A Website and App - Rentora.ai
 
 
 # Rentora Website
