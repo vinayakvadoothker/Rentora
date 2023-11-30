@@ -1,2 +1,2 @@
-# myhomes
-A Repo for A Website and App - MyHomes
+# renter.com
+A Repo for A Website and App - Renter.com
