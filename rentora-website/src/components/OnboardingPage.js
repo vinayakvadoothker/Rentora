@@ -1,12 +1,11 @@
-// components/OnboardingPage.js
-
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import SignupSignInPopup from './SignUpSignInPopup';
 import '../App.css';
 
 const OnboardingPage = () => {
   const [isPopupOpen, setPopupOpen] = useState(false);
+  const navigate = useNavigate(); // useNavigate hook
 
   const handleGetStartedClick = () => {
     setPopupOpen(true);
@@ -14,6 +13,8 @@ const OnboardingPage = () => {
 
   const handleClosePopup = () => {
     setPopupOpen(false);
+    // Redirect to the dashboard page after signing in
+    navigate('/onboarding');
   };
 
   return (

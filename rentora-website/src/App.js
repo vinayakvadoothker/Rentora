@@ -1,22 +1,68 @@
-// App.js
-
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import OnboardingPage from './components/OnboardingPage';
-import AboutPage from './components/AboutPage';
-import './App.css'; // Add your styling for the background image in App.css
+import { ClerkProvider, SignedIn, useClerk } from '@clerk/clerk-react';
+import { BrowserRouter as Router, Route, Routes, Navigate, Link } from 'react-router-dom';
+import Dashboard from './components/Dashboard'; // Import Dashboard component
+import OnboardingPage from './components/OnboardingPage'; // Import OnboardingPage component
+import BuyPage from './components/BuyPage'; // Import BuyPage component
+import RentPage from './components/RentPage'; // Import RentPage component
+import VenturePage from './components/VenturePage'; // Import VenturePage component
+import './App.css';
+
+if (!process.env.REACT_APP_CLERK_PUBLISHABLE_KEY) {
+  throw new Error("Missing Publishable Key");
+}
+
+const clerkPubKey = process.env.REACT_APP_CLERK_PUBLISHABLE_KEY;
+
+const Header = () => {
+  return (
+    <nav>
+      <ul>
+        <li>
+          <Link to="/buy">Buy</Link>
+        </li>
+        <li>
+          <Link to="/rent">Rent</Link>
+        </li>
+        <li>
+          <Link to="/venture">Venture</Link>
+        </li>
+      </ul>
+    </nav>
+  );
+};
+
+const Home = () => {
+  const { session } = useClerk();
+
+  // Redirect to the dashboard if the user is signed in
+  if (session && session.user) {
+    return (
+      <>
+        <Navigate to="/dashboard" />
+      </>
+    );
+  }
+
+  return <OnboardingPage />;
+};
 
 const App = () => {
   return (
     <div className="app-container">
-      {/* Background image and styling can be managed in App.css */}
-      <Router>
-        <Routes>
-          <Route path="/" element={<OnboardingPage />} />
-          <Route path="/about" element={<AboutPage />} />
-          {/* Add more routes as needed */}
-        </Routes>
-      </Router>
+      <ClerkProvider publishableKey={clerkPubKey}>
+          <SignedIn>
+            <Header />
+          </SignedIn>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/onboarding" element={<OnboardingPage />} />
+            <Route path="/buy" element={<BuyPage />} />
+            <Route path="/rent" element={<RentPage />} />
+            <Route path="/venture" element={<VenturePage />} />
+          </Routes>
+      </ClerkProvider>
     </div>
   );
 };

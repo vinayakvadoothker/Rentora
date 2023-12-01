@@ -1,51 +1,54 @@
-// components/SignupSignInPopup.js
-
-import React from 'react';
-import '../App.css';
-import { ClerkProvider, SignedIn, SignedOut } from "@clerk/clerk-react";
-import SignInForm from './SignInForm'; // Import SignInForm
-import Dashboard from './Dashboard'; // Import Dashboard
-
-if (!process.env.REACT_APP_CLERK_PUBLISHABLE_KEY) {
-  throw new Error("Missing Publishable Key");
-}
-const clerkPubKey = process.env.REACT_APP_CLERK_PUBLISHABLE_KEY;
+import React, { useEffect } from 'react';
+import { ClerkLoaded, SignedIn, SignedOut, SignIn, useClerk } from "@clerk/clerk-react";
+import { useNavigate } from 'react-router-dom';
+import Dashboard from './Dashboard';
 
 const SignupSignInPopup = ({ onClose }) => {
+  const navigate = useNavigate();
+  const { session } = useClerk();
+  const isSignedIn = session && session.user;
+
   const handleCloseClick = () => {
-    onClose(); // Call the onClose function to close the popup
+    onClose();
   };
 
+
+  useEffect(() => {
+    // Check if there is an active session and the user is signed in
+    if (session && session.user) {
+      // Redirect immediately after sign-in
+      navigate('/dashboard');
+    }
+  }, [session, navigate]);
+
+
+
   return (
+    <SignedOut>
     <div className="popup-overlay">
       <div className="popup-content" style={popupStyles}>
         <button className="close-button" onClick={handleCloseClick}>
           X
         </button>
-        <ClerkProvider publishableKey={clerkPubKey}>
           <div className="clerk-signin-container">
-            <SignedOut>
-              <SignInForm />
-            </SignedOut>
-            <SignedIn>
-              <Dashboard onClose={onClose} />
-            </SignedIn>
-          </div>a
-        </ClerkProvider>
+              <SignIn>
+              </SignIn>
+          </div>
       </div>
     </div>
+    </SignedOut>
   );
 };
 
 const popupStyles = {
   position: 'absolute',
-  top: '50%', // Adjust as needed
-  left: '50%', // Adjust as needed
-  transform: 'translate(-50%, -50%)', // Center the popup
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
   width: '100%',
   height: '100%',
-  background: 'rgba(255, 255, 255, 0.4)', // Partially transparent blue background
-  overflow: 'hidden', // Hide overflowing content outside the border-radius
+  background: 'rgba(255, 255, 255, 0.4)',
+  overflow: 'hidden',
 };
 
 export default SignupSignInPopup;

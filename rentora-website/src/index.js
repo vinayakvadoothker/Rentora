@@ -1,13 +1,14 @@
-// Import createRoot from react-dom/client
-import { createRoot } from 'react-dom/client';
+// src/index.js
 import React from 'react';
+import ReactDOM from 'react-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 import App from './App';
 
-// Use createRoot instead of ReactDOM.render
-const root = createRoot(document.getElementById('root'));
+const clerkPubKey = process.env.REACT_APP_CLERK_PUBLISHABLE_KEY;
 
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+ReactDOM.render(
+  <Router>
+    <App clerkPubKey={clerkPubKey} />
+  </Router>,
+  document.getElementById('root')
 );

@@ -4,6 +4,53 @@ body {
   margin: 0; /* Remove default margin */
   padding: 0; /* Remove default padding */
 }
+nav {
+  background-color: #33333300;
+  padding: 30px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: auto; /* Center horizontally */
+  display: flex;
+  align-items: center; /* Center vertically */
+  justify-content: center; /* Center horizontally */
+}
+
+li {
+  display: inline;
+  margin-right: 150px;
+}
+
+a {
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+  font-size: 30px;
+  font-family: monospace;
+  font-style: normal;
+  line-height: normal;
+  font-weight: 10;
+}
+
+.sign-out-button {
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+  background-color: #c9c9c9;
+  font-weight: bold;
+  font-size: 20px;
+  font-family: monospace;
+  font-style: normal;
+  line-height: normal;
+  font-weight: 10;
+  margin: auto; /* Center horizontally */
+  display: flex;
+  align-items: center; /* Center vertically */
+  justify-content: center; /* Center horizontally */
+  transform: translate(475%, -170%);
+}
+
 .app-container {
   background-image: url('./components/images/background.jpg'); /* Adjust the path accordingly */
   background-size: cover;
@@ -27,6 +74,23 @@ body {
   font-size: 120px;
   font-style: normal;
   font-weight: 500;
+  line-height: normal;
+}
+
+.dashboard-title {
+  width: 857px;
+  height: 240px;
+  margin: auto; /* Center horizontally */
+  display: flex;
+  align-items: center; /* Center vertically */
+  justify-content: center; /* Center horizontally */
+  flex-shrink: 0;
+  color: #EBE1E9;
+  text-align: center;
+  font-family: monospace;
+  font-size: 90;
+  font-style: normal;
+  font-weight: 300;
   line-height: normal;
 }
 
@@ -69,3 +133,4 @@ body {
   font-size: 24px;
   font-weight: 500;
 }
+
