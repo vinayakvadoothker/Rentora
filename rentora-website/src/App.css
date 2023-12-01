@@ -11,7 +11,6 @@ nav {
 
 ul {
   list-style-type: none;
-  padding: 0;
   margin: auto; /* Center horizontally */
   display: flex;
   align-items: center; /* Center vertically */
@@ -19,8 +18,10 @@ ul {
 }
 
 li {
-  display: inline;
-  margin-right: 150px;
+  display: flex;
+  align-items: center; /* Center vertically */
+  margin: auto; /* Center horizontally */
+
 }
 
 a {
