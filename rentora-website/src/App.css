@@ -44,11 +44,9 @@ a {
   font-style: normal;
   line-height: normal;
   font-weight: 10;
-  margin: auto; /* Center horizontally */
-  display: flex;
-  align-items: center; /* Center vertically */
-  justify-content: center; /* Center horizontally */
-  transform: translate(475%, -170%);
+  position: absolute;
+  top: 10px;
+  right: 10px;
 }
 
 .app-container {
