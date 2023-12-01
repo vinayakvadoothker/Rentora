@@ -1,5 +1,5 @@
-# renter.com
-A Repo for A Website and App - Renter.com
+# rentora.ai
+A Repo for A Website and App - Rentora.ai
 
 
 # Rentora Website
@@ -82,4 +82,4 @@ The project structure is organized as follows:
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details." > README.md
+This project is under Vinayak Vadoothker's Purview
