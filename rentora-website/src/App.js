@@ -5,6 +5,8 @@ import Dashboard from './components/Dashboard'; // Import Dashboard component
 import OnboardingPage from './components/OnboardingPage'; // Import OnboardingPage component
 import BuyPage from './components/BuyPage'; // Import BuyPage component
 import RentPage from './components/RentPage'; // Import RentPage component
+import ForAllPage from './components/Rent Pages/ForAllPage';
+import OffCampusPage from './components/Rent Pages/OffCampusPage';
 import VenturePage from './components/VenturePage'; // Import VenturePage component
 import './App.css';
 
@@ -38,12 +40,29 @@ const Header = () => {
           <Link to="/venture">Venture</Link>
         </li>
         <li>
-        <button className='sign-out-button' onClick={handleSignOut}>
-          <Link to="/onboarding">Sign Out</Link>
-        </button>
+          <button className='sign-out-button' onClick={handleSignOut}>
+            <Link to="/onboarding">Sign Out</Link>
+          </button>
         </li>
       </ul>
     </nav>
+  );
+};
+
+const RentHeader = () => {
+  return (
+    <nav>
+    <ul>
+      <li>
+        <Link to="/rent/off-campus">Off-Campus</Link>
+      </li>
+      <li>
+        <Link to="/rent/for-all">For-All</Link>
+      </li>
+      <li>
+      </li>
+    </ul>
+  </nav>
   );
 };
 
@@ -62,26 +81,38 @@ const App = () => {
   return (
     <div className="app-container">
       <ClerkProvider publishableKey={clerkPubKey}>
-          <SignedIn>
-            <Header />
-          </SignedIn>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/onboarding" element={<OnboardingPage />} />
-            <Route path="/buy" element={<BuyPage />} />
-            <Route path="/rent" element={<RentPage />} />
-            <Route path="/venture" element={<VenturePage />} />
-            <Route
-              path="*"
-              element={<SignedOut><Navigate to="/onboarding" replace /></SignedOut>}
-            />
-            {/* The catch-all route for signed-in users */}
-            <Route
-              path="*"
-              element={<SignedIn><Navigate to="/dashboard" replace /></SignedIn>}
-            />
-          </Routes>
+        <SignedIn>
+          <Header />
+        </SignedIn>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/onboarding" element={<OnboardingPage />} />
+          <Route path="/buy" element={<BuyPage />} />
+          <Route
+            path="/rent/*"
+            element={
+              <div>
+                <RentHeader />
+                <Routes>
+                  <Route index element={<RentPage />} />
+                  <Route path="/off-campus" element={<OffCampusPage />} />
+                  <Route path="/for-all" element={<ForAllPage />} />
+                </Routes>
+              </div>
+            }
+          />
+          <Route path="/venture" element={<VenturePage />} />
+          <Route
+            path="*"
+            element={<SignedOut><Navigate to="/onboarding" replace /></SignedOut>}
+          />
+          {/* The catch-all route for signed-in users */}
+          <Route
+            path="*"
+            element={<SignedIn><Navigate to="/dashboard" replace /></SignedIn>}
+          />
+        </Routes>
       </ClerkProvider>
     </div>
   );
