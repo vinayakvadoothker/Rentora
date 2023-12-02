@@ -51,7 +51,7 @@ const ForAllPage = () => {
         </div>
         <div style={listItemContainerStyle}>
           <span style={italicizedStyle}>Request maintainance needs through this website or our app</span>
-        </div> 
+        </div>
         <p>
           Stay tuned for updates on our progress and the launch of this exciting new feature!
         </p>
