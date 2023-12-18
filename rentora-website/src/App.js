@@ -96,7 +96,7 @@ const App = () => {
                 <RentHeader />
                 <Routes>
                   <Route index element={<RentPage />} />
-                  <Route path="/off-campus" element={<OffCampusPage />} />
+                  <Route path="/off-campus/*" element={<OffCampusPage />} />
                   <Route path="/for-all" element={<ForAllPage />} />
                 </Routes>
               </div>
